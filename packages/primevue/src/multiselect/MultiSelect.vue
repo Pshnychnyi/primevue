@@ -1078,15 +1078,9 @@ export default {
                 } else if (isNotEmpty(this.maxSelectedLabels) && this.d_value.length > this.maxSelectedLabels) {
                     return this.getSelectedItemsLabel();
                 } else {
-                    label = '';
+                    const labels = this.d_value.map((value) => this.getLabelByValue(value)).filter(isNotEmpty);
 
-                    for (let i = 0; i < this.d_value.length; i++) {
-                        if (i !== 0) {
-                            label += ', ';
-                        }
-
-                        label += this.getLabelByValue(this.d_value[i]);
-                    }
+                    label = labels.length ? labels.join(', ') : this.placeholder;
                 }
             } else {
                 label = this.placeholder;
